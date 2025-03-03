@@ -79,10 +79,10 @@ skip
 ### 設定 IP address
 
 ```go
-(config)# feature interface-vlan                //啟用 interface vlan 功能。
-(config)# interface vlan <vlan編號>             //e.g. interface vlan 1  
-(config-vlan)# ip address <A.B.C.D> <mask>      //e.g. ip address 192.168.0.1 255.255.255.0  
-(config-vlan)# no shutdown                           //啟用介面。
+(config)# feature interface-vlan				//啟用 interface vlan 功能。
+(config)# interface vlan <vlan編號>				//e.g. interface vlan 1  
+(config-vlan)# ip address <A.B.C.D> <mask>		//e.g. ip address 192.168.0.1 255.255.255.0  
+(config-vlan)# no shutdown						//啟用介面。
 
 (config)# ip route 0.0.0.0/0 192.168.0.254         //設定預設 gateway 。
 ```
@@ -204,7 +204,7 @@ skip
   (config-if)# switchport 
   (config-if)# switchport mode trunk
   (config-if)# no shutdown
-  (config-if)# vpc peer-link                //將 po20 指定為 Peer Link 。
+  (config-if)# vpc peer-link				//將 po20 指定為 Peer Link 。
   (config-if)# description "peer-link"
   (config-if)# exit
 
@@ -212,7 +212,7 @@ skip
   # show port-channel summary				//查看 Port Channel 狀態。
 
   # ping <keepalive IP> vrf vpc-keepalive	//能 ping 通代表 Peer Keppalive 有設定成功。
-  # show vpc brief                          //查看 vPC 狀態。
+  # show vpc brief							//查看 vPC 狀態。
   ```
 
 ### 設定 port-channel 和其他 switch 建立連線。
