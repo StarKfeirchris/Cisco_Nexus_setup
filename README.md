@@ -79,10 +79,10 @@ skip
 ### 設定 IP address
 
 ```go
-(config)# feature interface-vlan				//啟用 interface vlan 功能。
-(config)# interface vlan <vlan編號>				//e.g. interface vlan 1  
-(config-vlan)# ip address <A.B.C.D> <mask>		//e.g. ip address 192.168.0.1 255.255.255.0  
-(config-vlan)# no shutdown						//啟用介面。
+(config)# feature interface-vlan             //啟用 interface vlan 功能。
+(config)# interface vlan <VLAN number>       //e.g. interface vlan 1  
+(config-vlan)# ip address <A.B.C.D> <mask>   //e.g. ip address 192.168.0.1 255.255.255.0  
+(config-vlan)# no shutdown                   //啟用介面。
 
 (config)# ip route 0.0.0.0/0 192.168.0.254         //設定預設 gateway 。
 ```
@@ -105,10 +105,10 @@ skip
 ### 設定 NTP
 
 ```go
-(config)# feature ntp                   	//開啟 NTP 服務。
-(config)# clock timezone UTC 8 0        	//設定為台灣時區。
-(config)# ntp source-interface vlan1    	//設定網路來源為 vlan 1 。
-(config)# ntp server time.stdtime.gov.tw	//設定 NTP Server 。（外部 Server 用 ntp server，內部 Server 用 ntp peer 。）
+(config)# feature ntp                      //開啟 NTP 服務。
+(config)# clock timezone UTC 8 0           //設定為台灣時區。
+(config)# ntp source-interface vlan1       //設定網路來源為 vlan 1 。
+(config)# ntp server time.stdtime.gov.tw   //設定 NTP Server 。（外部 Server 用 ntp server，內部 Server 用 ntp peer 。）
      
 # show ntp peer-status          //顯示 NTP Server / Peer 狀態。
 # ntp sync-retry                //馬上同步時間。
@@ -125,7 +125,7 @@ skip
 ```
 
 
-## 2. Core Switch 設定
+## 2. 進階設定
 
 ### 設定 vPC
 
@@ -152,7 +152,7 @@ skip
   (config)# interface port-channel 10
   (config-if)# no switchport
   (config-if)# vrf member vpc-keepalive         //將 Po10 指定透過 vpc-keepalive 傳輸封包。
-  (config-if)# ip address 10.10.10.11/24		//設定此台 keepalive 用的 IP，只要不跟現有使用網段衝突的 IP 即可。
+  (config-if)# ip address 10.10.10.11/24        //設定此台 keepalive 用的 IP，只要不跟現有使用網段衝突的 IP 即可。
   (config-if)# description "vpc-keepalive"
   (config-if)# no shutdown 
   (config-if)# exit
@@ -204,15 +204,15 @@ skip
   (config-if)# switchport 
   (config-if)# switchport mode trunk
   (config-if)# no shutdown
-  (config-if)# vpc peer-link				//將 po20 指定為 Peer Link 。
+  (config-if)# vpc peer-link                //將 po20 指定為 Peer Link 。
   (config-if)# description "peer-link"
   (config-if)# exit
 
-  # show vrf interface						//查看介面指定使用的 VRF 。
-  # show port-channel summary				//查看 Port Channel 狀態。
+  # show vrf interface                      //查看介面指定使用的 VRF 。
+  # show port-channel summary               //查看 Port Channel 狀態。
 
-  # ping <keepalive IP> vrf vpc-keepalive	//能 ping 通代表 Peer Keppalive 有設定成功。
-  # show vpc brief							//查看 vPC 狀態。
+  # ping <keepalive IP> vrf vpc-keepalive   //能 ping 通代表 Peer Keppalive 有設定成功。
+  # show vpc brief                          //查看 vPC 狀態。
   ```
 
 ### 設定 port-channel 和其他 switch 建立連線。
